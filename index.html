@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="باقة الدعم الفني الشهرية لـ Edulink من Egypt Dev">
+  <meta name="theme-color" content="#F6F7FA">
+  <title>الدعم الفني الشهري | Egypt Dev</title>
+  <style>
+    :root {
+      --blue: #066EB7;
+      --green: #0FBA1E;
+      --background: #F6F7FA;
+      --text: #1A1A1A;
+      --muted: #5C626B;
+      --border: #E3E5E8;
+      --card: #FFFFFF;
+      --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    html {
+      color-scheme: light;
+    }
+
+    body {
+      min-height: 100vh;
+      min-height: 100svh;
+      margin: 0;
+      padding: clamp(1rem, 4vw, 2.5rem);
+      display: grid;
+      place-items: center;
+      overflow-x: hidden;
+      background:
+        linear-gradient(rgba(6, 110, 183, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(6, 110, 183, 0.035) 1px, transparent 1px),
+        var(--background);
+      background-size: 2.5rem 2.5rem;
+      color: var(--text);
+      font-family: Cairo, "Noto Kufi Arabic", Tahoma, sans-serif;
+      line-height: 1.7;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    main {
+      width: min(100%, 35rem);
+    }
+
+    .checkout-card {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(1.5rem, 5vw, 3rem);
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 1.5rem;
+      box-shadow: 0 1.5rem 4rem rgba(26, 26, 26, 0.1);
+    }
+
+    .checkout-card::before {
+      content: "";
+      position: absolute;
+      inset: 0 0 auto;
+      height: 0.35rem;
+      background: linear-gradient(90deg, var(--blue), var(--green));
+    }
+
+    .seller {
+      width: fit-content;
+      margin: 0 0 0.75rem;
+      padding: 0.25rem 0.7rem;
+      color: var(--blue);
+      background: rgba(6, 110, 183, 0.08);
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(1.65rem, 6vw, 2.35rem);
+      line-height: 1.35;
+    }
+
+    .summary {
+      margin: 0.85rem 0 0;
+      color: var(--muted);
+      font-size: 1rem;
+    }
+
+    .price {
+      display: flex;
+      align-items: baseline;
+      gap: 0.55rem;
+      margin: 1.75rem 0;
+      padding-block: 1.25rem;
+      border-block: 1px solid var(--border);
+    }
+
+    .price strong {
+      color: var(--blue);
+      font-size: clamp(2.6rem, 10vw, 4rem);
+      line-height: 1;
+    }
+
+    .price span {
+      color: var(--muted);
+      font-weight: 700;
+    }
+
+    .assurances {
+      margin: 0 0 1.75rem;
+      padding: 0;
+      display: grid;
+      gap: 0.75rem;
+      list-style: none;
+      font-size: 0.95rem;
+    }
+
+    .assurances li {
+      display: flex;
+      align-items: center;
+      gap: 0.7rem;
+    }
+
+    .assurances li::before {
+      content: "";
+      width: 0.5rem;
+      height: 0.5rem;
+      flex: 0 0 auto;
+      background: var(--green);
+      border-radius: 50%;
+      box-shadow: 0 0 0 0.25rem rgba(15, 186, 30, 0.1);
+    }
+
+    .checkout-button {
+      min-height: 44px;
+      width: 100%;
+      padding: 0.9rem 1.25rem;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--card);
+      background: var(--green);
+      border-radius: 0.8rem;
+      box-shadow: 0 0.65rem 1.5rem rgba(15, 186, 30, 0.22);
+      font-weight: 800;
+      text-align: center;
+      text-decoration: none;
+      transition:
+        transform 150ms var(--ease-out),
+        box-shadow 150ms var(--ease-out),
+        opacity 150ms var(--ease-out);
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      .checkout-button[href]:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 0.85rem 1.8rem rgba(15, 186, 30, 0.28);
+      }
+    }
+
+    .checkout-button[href]:active {
+      transform: scale(0.98);
+    }
+
+    .checkout-button:focus-visible {
+      outline: 3px solid var(--blue);
+      outline-offset: 3px;
+    }
+
+    .checkout-button.is-disabled {
+      cursor: not-allowed;
+      box-shadow: none;
+      opacity: 0.52;
+    }
+
+    .checkout-note {
+      min-height: 1.7em;
+      margin: 0.75rem 0 0;
+      color: var(--muted);
+      font-size: 0.82rem;
+      text-align: center;
+    }
+
+    .stripe-note {
+      margin: 1.25rem 0 0;
+      color: var(--muted);
+      font-size: 0.78rem;
+      text-align: center;
+    }
+
+    bdi {
+      unicode-bidi: isolate;
+    }
+
+    @media (min-width: 640px) {
+      .checkout-card {
+        padding: 3rem;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <article class="checkout-card" aria-labelledby="checkout-title">
+      <header>
+        <p class="seller">مقدمة من <bdi>Egypt Dev</bdi></p>
+        <h1 id="checkout-title">باقة الدعم الفني الشهرية لـ <bdi>Edulink</bdi></h1>
+        <p class="summary">دعم فني مستمر يساعد فريق <bdi>Edulink</bdi> على معالجة المشكلات والحفاظ على استقرار العمل.</p>
+      </header>
+
+      <div class="price" aria-label="99 دولاراً أمريكياً شهرياً">
+        <strong><bdi>$99</bdi></strong>
+        <span>شهرياً</span>
+      </div>
+
+      <ul class="assurances" aria-label="مزايا الاشتراك">
+        <li>اشتراك شهري متجدد</li>
+        <li>فاتورة وإيصال عبر البريد الإلكتروني</li>
+        <li>دفع آمن عبر <bdi>Stripe</bdi></li>
+      </ul>
+
+      <a
+        id="checkout-link"
+        class="checkout-button is-disabled"
+        aria-disabled="true"
+        aria-describedby="checkout-note"
+      >
+        اشترك بأمان
+      </a>
+      <p id="checkout-note" class="checkout-note" role="status">رابط الدفع غير مهيأ بعد.</p>
+      <p class="stripe-note">سيتم تحويلك إلى صفحة دفع آمنة مستضافة من <bdi>Stripe</bdi>.</p>
+    </article>
+  </main>
+
+  <script>
+    const STRIPE_PAYMENT_LINK = "";
+    const checkoutLink = document.querySelector("#checkout-link");
+    const checkoutNote = document.querySelector("#checkout-note");
+
+    function isValidStripePaymentLink(value) {
+      try {
+        const url = new URL(value);
+        return url.protocol === "https:" && url.hostname === "buy.stripe.com" && url.pathname.length > 1;
+      } catch {
+        return false;
+      }
+    }
+
+    if (isValidStripePaymentLink(STRIPE_PAYMENT_LINK)) {
+      checkoutLink.href = STRIPE_PAYMENT_LINK;
+      checkoutLink.classList.remove("is-disabled");
+      checkoutLink.removeAttribute("aria-disabled");
+      checkoutNote.textContent = "سيتم تجديد الاشتراك شهرياً حتى يتم إلغاؤه.";
+    } else {
+      checkoutLink.removeAttribute("href");
+    }
+  </script>
+</body>
+</html>
