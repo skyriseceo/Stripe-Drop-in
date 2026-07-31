@@ -2,7 +2,7 @@
 
 > **For agentic workers:** REQUIRED SUB-SKILL: Use superpowers:subagent-driven-development (recommended) or superpowers:executing-plans to implement this plan task-by-task. Steps use checkbox (`- [ ]`) syntax for tracking.
 
-**Goal:** Build a secure Arabic RTL single-file checkout page for Egypt Dev that opens a Stripe-hosted USD 99/month subscription Checkout for Edulink.
+**Goal:** Build a secure Arabic RTL single-file checkout page for Ø§ÙÙØ¨Ø±ÙØ¬ Ø§ÙØ¹Ø±Ø¨Ù that opens a Stripe-hosted USD 99/month subscription Checkout for Ø§ÙØ¯ÙÙÙÙØªÙ.
 
 **Architecture:** The deployed artifact is one dependency-free `index.html` containing semantic Arabic markup, CSS, and a public Stripe Payment Link URL. A small Node.js provisioning utility exists only for development: it creates the test Product, recurring Price, and Payment Link without storing an API key. Node's built-in test runner verifies both the Stripe request shape and the static page's security/accessibility contracts.
 
@@ -12,8 +12,8 @@
 
 - The only deployed file is `index.html`; no backend, database, package install, or build step is required.
 - All customer-facing static-page copy is Arabic and the document uses `lang="ar"` and `dir="rtl"`.
-- Seller name remains `Egypt Dev`; customer/product brand remains `Edulink`.
-- Product name is `باقة الدعم الفني الشهرية لـ Edulink`.
+- Seller name remains `Ø§ÙÙØ¨Ø±ÙØ¬ Ø§ÙØ¹Ø±Ø¨Ù`; customer/product brand remains `Ø§ÙØ¯ÙÙÙÙØªÙ`.
+- Product name is `باقة الدعم الفني الشهرية لـ Ø§ÙØ¯ÙÙÙÙØªÙ`.
 - Price is exactly USD 99 (`unit_amount=9900`) every month, quantity one, with no trial.
 - Checkout collects required individual name plus its normal required email field.
 - Checkout uses Stripe's hosted confirmation page.
@@ -21,7 +21,7 @@
 - Do not enable automatic tax, tax-ID collection, billing-address collection, coupons, a custom domain, or a customer portal.
 - Do not store or print a secret/restricted API key. Prefer a minimally scoped restricted key supplied as `STRIPE_RESTRICTED_KEY`.
 - Use Stripe API version `2026-07-29.dahlia`.
-- Use Edulink colors: blue `#066EB7`, green `#0FBA1E`, background `#F6F7FA`, text `#1A1A1A`, border `#E3E5E8`, card `#FFFFFF`.
+- Use Ø§ÙØ¯ÙÙÙÙØªÙ colors: blue `#066EB7`, green `#0FBA1E`, background `#F6F7FA`, text `#1A1A1A`, border `#E3E5E8`, card `#FFFFFF`.
 - Maintain WCAG AA contrast, a visible keyboard focus state, a minimum 44px primary action, responsive layout without horizontal scrolling, and reduced-motion support.
 
 ## File Structure
@@ -94,7 +94,7 @@ test("creates the Arabic monthly product, price, and hosted-confirmation link", 
     "https://api.stripe.com/v1/prices",
     "https://api.stripe.com/v1/payment_links",
   ]);
-  assert.equal(requests[0].params.get("name"), "باقة الدعم الفني الشهرية لـ Edulink");
+  assert.equal(requests[0].params.get("name"), "باقة الدعم الفني الشهرية لـ Ø§ÙØ¯ÙÙÙÙØªÙ");
   assert.equal(requests[1].params.get("currency"), "usd");
   assert.equal(requests[1].params.get("unit_amount"), "9900");
   assert.equal(requests[1].params.get("recurring[interval]"), "month");
@@ -172,8 +172,8 @@ export async function provisionStripeCheckout(apiKey, fetchImpl = globalThis.fet
   }
 
   const product = await stripePost("products", {
-    name: "باقة الدعم الفني الشهرية لـ Edulink",
-    description: "دعم فني شهري مستمر لفريق Edulink مقدم من Egypt Dev",
+    name: "باقة الدعم الفني الشهرية لـ Ø§ÙØ¯ÙÙÙÙØªÙ",
+    description: "دعم فني شهري مستمر لفريق Ø§ÙØ¯ÙÙÙÙØªÙ مقدم من Ø§ÙÙØ¨Ø±ÙØ¬ Ø§ÙØ¹Ø±Ø¨Ù",
     "metadata[service]": "edulink_monthly_technical_support",
   }, apiKey, "egypt-dev-edulink-support-product-v1", fetchImpl);
 
@@ -257,15 +257,15 @@ const html = readFileSync(new URL("../index.html", import.meta.url), "utf8");
 
 test("is an Arabic RTL subscription page with the approved copy", () => {
   assert.match(html, /<html lang="ar" dir="rtl">/);
-  assert.match(html, /Egypt Dev/);
-  assert.match(html, /باقة الدعم الفني الشهرية لـ <bdi>Edulink<\/bdi>/);
+  assert.match(html, /Ø§ÙÙØ¨Ø±ÙØ¬ Ø§ÙØ¹Ø±Ø¨Ù/);
+  assert.match(html, /باقة الدعم الفني الشهرية لـ <bdi>Ø§ÙØ¯ÙÙÙÙØªÙ<\/bdi>/);
   assert.match(html, /<bdi>\$99<\/bdi>/);
   assert.match(html, /شهرياً/);
   assert.match(html, /اشترك بأمان/);
   assert.match(html, /دفع آمن عبر <bdi>Stripe<\/bdi>/);
 });
 
-test("uses the approved Edulink palette and accessibility contracts", () => {
+test("uses the approved Ø§ÙØ¯ÙÙÙÙØªÙ palette and accessibility contracts", () => {
   for (const color of ["#066EB7", "#0FBA1E", "#F6F7FA", "#1A1A1A", "#E3E5E8", "#FFFFFF"]) {
     assert.ok(html.includes(color), `missing ${color}`);
   }
@@ -301,8 +301,8 @@ Create `index.html` with this exact structure and behavior:
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="باقة الدعم الفني الشهرية لـ Edulink من Egypt Dev">
-  <title>الدعم الفني الشهري | Egypt Dev</title>
+  <meta name="description" content="باقة الدعم الفني الشهرية لـ Ø§ÙØ¯ÙÙÙÙØªÙ من Ø§ÙÙØ¨Ø±ÙØ¬ Ø§ÙØ¹Ø±Ø¨Ù">
+  <title>الدعم الفني الشهري | Ø§ÙÙØ¨Ø±ÙØ¬ Ø§ÙØ¹Ø±Ø¨Ù</title>
   <style>
     :root {
       --blue: #066EB7;
@@ -454,9 +454,9 @@ Create `index.html` with this exact structure and behavior:
   <main>
     <article class="checkout-card" aria-labelledby="checkout-title">
       <header>
-        <p class="seller">مقدمة من <bdi>Egypt Dev</bdi></p>
-        <h1 id="checkout-title">باقة الدعم الفني الشهرية لـ <bdi>Edulink</bdi></h1>
-        <p class="summary">دعم فني مستمر يساعد فريق Edulink على معالجة المشكلات والحفاظ على استقرار العمل.</p>
+        <p class="seller">مقدمة من <bdi>Ø§ÙÙØ¨Ø±ÙØ¬ Ø§ÙØ¹Ø±Ø¨Ù</bdi></p>
+        <h1 id="checkout-title">باقة الدعم الفني الشهرية لـ <bdi>Ø§ÙØ¯ÙÙÙÙØªÙ</bdi></h1>
+        <p class="summary">دعم فني مستمر يساعد فريق Ø§ÙØ¯ÙÙÙÙØªÙ على معالجة المشكلات والحفاظ على استقرار العمل.</p>
       </header>
       <div class="price" aria-label="99 دولاراً أمريكياً شهرياً">
         <strong><bdi>$99</bdi></strong><span>شهرياً</span>
@@ -563,9 +563,9 @@ Do not add a publishable, secret, or restricted key to `index.html`.
 Create `README.md` with:
 
 ```markdown
-# Egypt Dev — Stripe Drop-in Checkout
+# Ø§ÙÙØ¨Ø±ÙØ¬ Ø§ÙØ¹Ø±Ø¨Ù — Stripe Drop-in Checkout
 
-Arabic single-file checkout entry point for Edulink's USD 99/month technical-support subscription. The deployed artifact is only `index.html`; payment details are collected by Stripe-hosted Checkout.
+Arabic single-file checkout entry point for Ø§ÙØ¯ÙÙÙÙØªÙ's USD 99/month technical-support subscription. The deployed artifact is only `index.html`; payment details are collected by Stripe-hosted Checkout.
 
 ## Preview and test
 
@@ -575,7 +575,7 @@ For a Stripe test checkout, use card `4242 4242 4242 4242`, any future expiry da
 
 ## Stripe branding and emails
 
-In Stripe Dashboard branding settings, set the public business name to `Egypt Dev`, upload the approved logo if available, and set the brand accent to `#0FBA1E`. In customer email settings, enable successful-payment receipts and the relevant subscription and invoice notifications.
+In Stripe Dashboard branding settings, set the public business name to `Ø§ÙÙØ¨Ø±ÙØ¬ Ø§ÙØ¹Ø±Ø¨Ù`, upload the approved logo if available, and set the brand accent to `#0FBA1E`. In customer email settings, enable successful-payment receipts and the relevant subscription and invoice notifications.
 
 ## Go live
 
@@ -606,14 +606,14 @@ Run `npm run preview`, then use the Browser skill to inspect `http://localhost:4
 
 - Arabic copy and RTL order render correctly.
 - The card has no horizontal overflow.
-- `$99`, `Egypt Dev`, `Edulink`, and `Stripe` have correct bidirectional order.
+- `$99`, `Ø§ÙÙØ¨Ø±ÙØ¬ Ø§ÙØ¹Ø±Ø¨Ù`, `Ø§ÙØ¯ÙÙÙÙØªÙ`, and `Stripe` have correct bidirectional order.
 - The green action is at least 44px tall and focus is visible by keyboard.
 - The action URL is the exact HTTPS `buy.stripe.com` test URL.
 - No console error is present.
 
 - [ ] **Step 6: Complete an end-to-end Stripe test subscription**
 
-Open the action, confirm Egypt Dev branding, the Arabic product name, USD 99 monthly cadence, required individual name, and email. Complete Checkout with Stripe test card `4242 4242 4242 4242`. Confirm the Stripe-hosted completion page and the Customer, Subscription, Payment, and paid Invoice in test mode.
+Open the action, confirm Ø§ÙÙØ¨Ø±ÙØ¬ Ø§ÙØ¹Ø±Ø¨Ù branding, the Arabic product name, USD 99 monthly cadence, required individual name, and email. Complete Checkout with Stripe test card `4242 4242 4242 4242`. Confirm the Stripe-hosted completion page and the Customer, Subscription, Payment, and paid Invoice in test mode.
 
 - [ ] **Step 7: Commit the configured handoff**
 

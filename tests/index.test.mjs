@@ -5,6 +5,7 @@ import vm from "node:vm";
 
 const html = readFileSync(new URL("../index.html", import.meta.url), "utf8");
 const script = html.match(/<script>([\s\S]*?)<\/script>/)?.[1];
+const legacyNames = new RegExp(`${["Egypt", "Dev"].join(" ")}|${["Edu", "link"].join("")}`);
 
 function runCheckoutScript(paymentLink) {
   const attributes = new Map([["aria-disabled", "true"]]);
@@ -33,15 +34,16 @@ function runCheckoutScript(paymentLink) {
 
 test("renders the approved Arabic RTL subscription content", () => {
   assert.match(html, /<html lang="ar" dir="rtl">/);
-  assert.match(html, /Egypt Dev/);
-  assert.match(html, /باقة الدعم الفني الشهرية لـ <bdi>Edulink<\/bdi>/);
+  assert.match(html, /المبرمج العربي/);
+  assert.match(html, /باقة الدعم الفني الشهرية لـ ايديوليتك/);
+  assert.doesNotMatch(html, legacyNames);
   assert.match(html, /<bdi>\$99<\/bdi>/);
   assert.match(html, /شهرياً/);
   assert.match(html, /اشترك بأمان/);
   assert.match(html, /دفع آمن عبر <bdi>Stripe<\/bdi>/);
 });
 
-test("uses the approved Edulink palette and accessibility contracts", () => {
+test("uses the approved brand palette and accessibility contracts", () => {
   for (const color of ["#066EB7", "#0FBA1E", "#F6F7FA", "#1A1A1A", "#E3E5E8", "#FFFFFF"]) {
     assert.ok(html.includes(color), `missing ${color}`);
   }

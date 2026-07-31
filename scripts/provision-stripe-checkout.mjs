@@ -35,8 +35,8 @@ export async function provisionStripeCheckout(apiKey, fetchImpl = globalThis.fet
   const product = await stripePost(
     "products",
     {
-      name: "باقة الدعم الفني الشهرية لـ Edulink",
-      description: "دعم فني شهري مستمر لفريق Edulink مقدم من Egypt Dev",
+      name: "باقة الدعم الفني الشهرية لـ ايديوليتك",
+      description: "دعم فني شهري مستمر لفريق ايديوليتك مقدم من المبرمج العربي",
       "metadata[service]": "edulink_monthly_technical_support",
     },
     apiKey,

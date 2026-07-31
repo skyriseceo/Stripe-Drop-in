@@ -2,17 +2,17 @@
 
 ## Summary
 
-Build a secure, single-file Arabic subscription checkout entry point for Egypt Dev's monthly technical support package for Edulink. The static page will link to a Stripe Payment Link for a recurring USD 99 monthly subscription. Stripe-hosted Checkout will collect the customer's required individual name and email, handle payment and recurring billing, generate subscription invoices, and show Stripe's hosted confirmation page.
+Build a secure, single-file Arabic subscription checkout entry point for Ø§ÙÙØ¨Ø±ÙØ¬ Ø§ÙØ¹Ø±Ø¨Ù's monthly technical support package for Ø§ÙØ¯ÙÙÙÙØªÙ. The static page will link to a Stripe Payment Link for a recurring USD 99 monthly subscription. Stripe-hosted Checkout will collect the customer's required individual name and email, handle payment and recurring billing, generate subscription invoices, and show Stripe's hosted confirmation page.
 
 ## Goals
 
 - Deliver one portable `index.html` file with its CSS embedded.
 - Present all customer-facing static-page content in Arabic with a right-to-left layout.
-- Clearly identify Egypt Dev as the seller and Edulink as the supported customer/package.
+- Clearly identify Ø§ÙÙØ¨Ø±ÙØ¬ Ø§ÙØ¹Ø±Ø¨Ù as the seller and Ø§ÙØ¯ÙÙÙÙØªÙ as the supported customer/package.
 - Present a fixed USD 99 monthly subscription with no trial.
 - Keep secret and restricted Stripe API keys out of all browser-delivered code.
 - Use Stripe-hosted Checkout and dynamic payment methods.
-- Match the visual language of the existing Edulink page.
+- Match the visual language of the existing Ø§ÙØ¯ÙÙÙÙØªÙ page.
 - Work on static hosting without a server, package manager, or build step.
 
 ## Non-goals
@@ -30,28 +30,28 @@ The runtime consists of one static `index.html`. It contains semantic Arabic HTM
 
 The Stripe account contains:
 
-1. A Product named `باقة الدعم الفني الشهرية لـ Edulink` so the product line is also understandable in hosted Checkout and invoices.
+1. A Product named `باقة الدعم الفني الشهرية لـ Ø§ÙØ¯ÙÙÙÙØªÙ` so the product line is also understandable in hosted Checkout and invoices.
 2. A recurring Price of USD 99 every month.
 3. A Payment Link using that Price, with quantity fixed to one.
 4. Required individual-name collection and normal Checkout email collection.
 5. Stripe's hosted post-payment confirmation.
 6. Dynamic payment methods, with no `payment_method_types` restriction.
 
-Stripe account branding should use the Egypt Dev public business name and, where configured, the Edulink-aligned accent color.
+Stripe account branding should use the Ø§ÙÙØ¨Ø±ÙØ¬ Ø§ÙØ¹Ø±Ø¨Ù public business name and, where configured, the Ø§ÙØ¯ÙÙÙÙØªÙ-aligned accent color.
 
 ## Page Design
 
 The page is a compact, responsive Arabic checkout card that can stand alone or be dropped into a static page. It contains:
 
-- A small `Egypt Dev` seller label.
-- The package title `باقة الدعم الفني الشهرية لـ Edulink`.
+- A small `Ø§ÙÙØ¨Ø±ÙØ¬ Ø§ÙØ¹Ø±Ø¨Ù` seller label.
+- The package title `باقة الدعم الفني الشهرية لـ Ø§ÙØ¯ÙÙÙÙØªÙ`.
 - The price `$99` with the cadence `شهرياً`.
 - A short Arabic statement that the subscription covers ongoing technical support.
 - A concise Arabic list of checkout assurances: secure Stripe checkout, monthly billing, and invoice/receipt delivery.
 - One primary `اشترك بأمان` link.
 - A small Arabic `دفع آمن عبر Stripe` trust note.
 
-The visual palette is derived from the current Edulink page:
+The visual palette is derived from the current Ø§ÙØ¯ÙÙÙÙØªÙ page:
 
 | Role | Color |
 | --- | --- |
@@ -69,7 +69,7 @@ The page uses a restrained blue-to-green accent, rounded corners, generous white
 1. The customer opens the static page.
 2. The customer selects `Subscribe securely`.
 3. The browser navigates to the Stripe-hosted Payment Link.
-4. Stripe Checkout displays Egypt Dev's configured public branding, the Arabic package name, USD 99 monthly price, and eligible dynamic payment methods. Stripe chooses its supported interface locale from the customer's browser for Payment Links.
+4. Stripe Checkout displays Ø§ÙÙØ¨Ø±ÙØ¬ Ø§ÙØ¹Ø±Ø¨Ù's configured public branding, the Arabic package name, USD 99 monthly price, and eligible dynamic payment methods. Stripe chooses its supported interface locale from the customer's browser for Payment Links.
 5. Checkout requires the customer's individual name and email and collects payment details on Stripe's domain.
 6. Stripe creates the Customer and Subscription, pays the first subscription invoice, and emails the normal Stripe receipt/invoice according to account email settings.
 7. Stripe shows its hosted confirmation page.
@@ -102,7 +102,7 @@ The final configured artifact contains only the Payment Link URL, which is desig
 - Use semantic headings, paragraphs, list markup, and an anchor for navigation.
 - Set the document language to Arabic and the base writing direction to right-to-left.
 - Isolate Latin brand names and currency text with appropriate bidirectional markup.
-- Maintain visible keyboard focus with the Edulink blue.
+- Maintain visible keyboard focus with the Ø§ÙØ¯ÙÙÙÙØªÙ blue.
 - Meet WCAG AA text contrast for all essential text and controls.
 - Keep the primary action at least 44 pixels high.
 - Support narrow mobile screens without horizontal scrolling.
@@ -117,7 +117,7 @@ The final configured artifact contains only the Payment Link URL, which is desig
 - Verify keyboard focus order and the disabled/unconfigured state.
 - Verify that the configured action points only to an HTTPS `buy.stripe.com` URL.
 - Confirm that all static-page customer-facing copy is Arabic, RTL layout is correct, and Latin brand/price text remains readable.
-- Open the test Payment Link and confirm Egypt Dev branding, Arabic package name, USD 99 monthly cadence, required name, and email collection.
+- Open the test Payment Link and confirm Ø§ÙÙØ¨Ø±ÙØ¬ Ø§ÙØ¹Ø±Ø¨Ù branding, Arabic package name, USD 99 monthly cadence, required name, and email collection.
 - Complete a test subscription using Stripe's test card `4242 4242 4242 4242`, any future expiry date, and any CVC.
 - Confirm that Stripe creates a test Customer, Subscription, Payment, and paid Invoice and then shows its hosted confirmation page.
 

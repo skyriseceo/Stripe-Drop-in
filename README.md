@@ -1,6 +1,6 @@
-# Egypt Dev — Stripe Drop-in Checkout
+# المبرمج العربي — Stripe Drop-in Checkout
 
-Arabic single-file checkout entry point for Edulink's USD 99/month technical-support subscription. The deployed artifact is only `index.html`; payment details are collected by Stripe-hosted Checkout.
+Arabic single-file checkout entry point for ايديوليتك's USD 99/month technical-support subscription. The deployed artifact is only `index.html`; payment details are collected by Stripe-hosted Checkout.
 
 ## Preview and test
 
@@ -10,7 +10,7 @@ For a Stripe test checkout, use card `4242 4242 4242 4242`, any future expiry da
 
 ## Stripe branding and emails
 
-In Stripe Dashboard branding settings, set the public business name to `Egypt Dev`, upload the approved logo if available, and set the brand accent to `#0FBA1E`. In customer email settings, enable successful-payment receipts and the relevant subscription and invoice notifications.
+In Stripe Dashboard branding settings, set the public business name to `المبرمج العربي` if desired, upload the approved logo if available, and set the brand accent to `#0FBA1E`. In customer email settings, enable successful-payment receipts and the relevant subscription and invoice notifications.
 
 ## Go live
 

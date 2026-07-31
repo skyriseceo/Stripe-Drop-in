@@ -30,7 +30,7 @@ test("creates the Arabic monthly product, price, and hosted-confirmation link", 
     "https://api.stripe.com/v1/prices",
     "https://api.stripe.com/v1/payment_links",
   ]);
-  assert.equal(requests[0].params.get("name"), "باقة الدعم الفني الشهرية لـ Edulink");
+  assert.equal(requests[0].params.get("name"), "باقة الدعم الفني الشهرية لـ ايديوليتك");
   assert.equal(requests[1].params.get("currency"), "usd");
   assert.equal(requests[1].params.get("unit_amount"), "9900");
   assert.equal(requests[1].params.get("recurring[interval]"), "month");
