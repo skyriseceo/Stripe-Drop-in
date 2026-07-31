@@ -16,7 +16,7 @@ function runCheckoutScript(paymentLink) {
   };
   const checkoutNote = { textContent: "رابط الدفع غير مهيأ بعد." };
   const configuredScript = script.replace(
-    'const STRIPE_PAYMENT_LINK = "";',
+    /const STRIPE_PAYMENT_LINK = "[^"]*";/,
     `const STRIPE_PAYMENT_LINK = ${JSON.stringify(paymentLink)};`,
   );
 
@@ -53,6 +53,10 @@ test("uses the approved Edulink palette and accessibility contracts", () => {
 
 test("contains no Stripe API key", () => {
   assert.doesNotMatch(html, /\b(?:sk|rk|pk)_(?:test|live)_[A-Za-z0-9]+/);
+});
+
+test("embeds its favicon so static hosting makes no missing asset request", () => {
+  assert.match(html, /<link rel="icon" href="data:image\/svg\+xml,/);
 });
 
 test("enables checkout only for an HTTPS Stripe Payment Link", () => {

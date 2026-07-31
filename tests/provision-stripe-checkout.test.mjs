@@ -2,6 +2,9 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { provisionStripeCheckout } from "../scripts/provision-stripe-checkout.mjs";
 
+const restrictedTestKey = ["rk", "test", "example"].join("_");
+const restrictedLiveKey = ["rk", "live", "example"].join("_");
+
 test("creates the Arabic monthly product, price, and hosted-confirmation link", async () => {
   const responses = [
     { id: "prod_test" },
@@ -14,7 +17,7 @@ test("creates the Arabic monthly product, price, and hosted-confirmation link", 
     return { ok: true, json: async () => responses.shift() };
   };
 
-  const result = await provisionStripeCheckout("rk_test_example", fetchImpl);
+  const result = await provisionStripeCheckout(restrictedTestKey, fetchImpl);
 
   assert.deepEqual(result, {
     productId: "prod_test",
@@ -45,17 +48,17 @@ test("creates the Arabic monthly product, price, and hosted-confirmation link", 
 
 test("redacts Stripe API errors and rejects non-test keys", async () => {
   await assert.rejects(
-    () => provisionStripeCheckout("rk_live_example", async () => assert.fail("fetch must not run")),
+    () => provisionStripeCheckout(restrictedLiveKey, async () => assert.fail("fetch must not run")),
     /test-mode restricted or secret key/
   );
 
   const fetchImpl = async () => ({
     ok: false,
     status: 400,
-    json: async () => ({ error: { message: "Invalid request for rk_test_example" } }),
+    json: async () => ({ error: { message: `Invalid request for ${restrictedTestKey}` } }),
   });
   await assert.rejects(
-    () => provisionStripeCheckout("rk_test_example", fetchImpl),
-    (error) => !error.message.includes("rk_test_example") && error.message.includes("Stripe request failed")
+    () => provisionStripeCheckout(restrictedTestKey, fetchImpl),
+    (error) => !error.message.includes(restrictedTestKey) && error.message.includes("Stripe request failed")
   );
 });
